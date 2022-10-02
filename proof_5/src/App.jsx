@@ -2,6 +2,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import './App.css'
 import Characters from './components/Characters'
+import Header from './components/Header'
+import Pagination from './components/Pagination'
 
 function App() {
 
@@ -17,10 +19,13 @@ function App() {
         .catch(err => console.log(err))
 
   },[])
+  // console.log(ids)
 
 
   return (
     <div className="App">
+      <Header />
+      <section className='container'>
       {
         ids?.results.map(character =>(
           <Characters 
@@ -29,6 +34,17 @@ function App() {
           />
         ))
       }
+
+      </section>
+      <section>
+      {
+          <Pagination 
+          setIds={setIds}
+          ids={ids}
+          />
+      }
+
+      </section>
     </div>
   )
 }
